@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Log.cs" />
+    <Compile Include="SceneProcessor.cs" />
+    <Compile Include="WireObject.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,6 +93,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\axes.wo" />
+    <None Include="Resources\cube.wo" />
+    <None Include="Resources\letter_n.wo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

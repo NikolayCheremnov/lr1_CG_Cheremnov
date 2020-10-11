@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lr1_CG_Cheremnov"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="MainWindow_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="169*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="363*"/>
+            <ColumnDefinition Width="34*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="0,10,58.6,0" TextWrapping="Wrap" Text="Projection type:" Grid.RowSpan="2" HorizontalAlignment="Right" Width="116" Height="23" VerticalAlignment="Top"/>
+        <ListBox x:Name="lb_projection_type"  Grid.ColumnSpan="2" Height="72" Margin="0,10,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" Grid.RowSpan="2" SelectionChanged="lb_projection_type_SelectionChanged">
+            <ListBoxItem Content="1" HorizontalAlignment="Center"/>
+            <ListBoxItem Content="2" HorizontalAlignment="Center"/>
+            <ListBoxItem Content="3" HorizontalAlignment="Center"/>
+        </ListBox>
+        <DataGrid x:Name="dg_logs" AutoGenerateColumns="False" Margin="10,0,9.6,10" Grid.Row="1" Grid.ColumnSpan="2" Height="102" VerticalAlignment="Bottom" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}"/>
+                <DataGridTextColumn Header="Action" Binding="{Binding Action}"/>
+                <DataGridTextColumn Header="Logs" Binding="{Binding Logs}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
