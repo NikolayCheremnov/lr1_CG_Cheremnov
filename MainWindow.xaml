@@ -6,29 +6,72 @@
         xmlns:local="clr-namespace:lr1_CG_Cheremnov"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Loaded="MainWindow_Loaded">
-    <Grid>
+        Loaded="MainWindow_Loaded" MinWidth="800" MinHeight="600">
+    <Grid Margin="0,0,-0.4,0.4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="169*"/>
             <RowDefinition Height="30*"/>
+            <RowDefinition Height="262*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="188*"/>
+            <RowDefinition Height="82*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="363*"/>
-            <ColumnDefinition Width="34*"/>
+            <ColumnDefinition Width="681*"/>
+            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="68*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="0,10,58.6,0" TextWrapping="Wrap" Text="Projection type:" Grid.RowSpan="2" HorizontalAlignment="Right" Width="116" Height="23" VerticalAlignment="Top"/>
-        <ListBox x:Name="lb_projection_type"  Grid.ColumnSpan="2" Height="72" Margin="0,10,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" Grid.RowSpan="2" SelectionChanged="lb_projection_type_SelectionChanged">
-            <ListBoxItem Content="1" HorizontalAlignment="Center"/>
+        <TextBlock Margin="0,22,10.6,0" TextWrapping="Wrap" Text="Projection type:" Grid.RowSpan="2" HorizontalAlignment="Right" Width="116" Height="23" VerticalAlignment="Top"/>
+        <ListBox x:Name="lb_projection_type"  Grid.ColumnSpan="3" Height="89" Margin="0,22,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" Grid.RowSpan="2" SelectionChanged="lb_projection_type_SelectionChanged">
+            <ListBoxItem Content="test" HorizontalAlignment="Center"/>
+            <ListBoxItem Content="free_projection" HorizontalAlignment="Center"/>
             <ListBoxItem Content="2" HorizontalAlignment="Center"/>
             <ListBoxItem Content="3" HorizontalAlignment="Center"/>
         </ListBox>
-        <DataGrid x:Name="dg_logs" AutoGenerateColumns="False" Margin="10,0,9.6,10" Grid.Row="1" Grid.ColumnSpan="2" Height="102" VerticalAlignment="Bottom" Grid.RowSpan="2">
+        <DataGrid x:Name="dg_logs" AutoGenerateColumns="False" Margin="10,0,9.6,10.4" Grid.Row="3" Grid.ColumnSpan="3" Height="102" VerticalAlignment="Bottom" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Time" Binding="{Binding Time}"/>
                 <DataGridTextColumn Header="Action" Binding="{Binding Action}"/>
                 <DataGridTextColumn Header="Logs" Binding="{Binding Logs}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Border Margin="14,4.4,131.6,35.8" ClipToBounds="True" Grid.Row="1" Grid.RowSpan="3" Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+            <Canvas x:Name="CanvasArea"  HorizontalAlignment="Center" VerticalAlignment="Center"
+          Width="0" Height="0"
+          RenderTransform="1 0 0 -1 0 0"/>
+        </Border>
+        <Menu Height="22" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,0,9.6,0">
+            <MenuItem Header="File">
+                <MenuItem x:Name="mi_load_object" Header="Load object" Click="mi_load_object_Click" ></MenuItem>
+                <MenuItem x:Name="mi_remove_from_scene" Header="Remove from scene" Click="mi_remove_from_scene_Click"/>
+            </MenuItem>
+            <MenuItem Header="Actions">
+                <MenuItem x:Name="mi_reset" Header="Reset" Click="mi_reset_Click" />
+            </MenuItem>
+        </Menu>
+        <TextBlock Margin="0,94.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OX-Scalling" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
+        <TextBox x:Name="tb_ox_scalling" Text="100" Grid.ColumnSpan="3" Height="23" Margin="0,93.4,9.6,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" TextChanged="tb_scalling_TextChanged"/>
+        <TextBox x:Name="tb_oy_scalling" Grid.ColumnSpan="3" Height="23" Margin="0,121.4,9.6,0" Grid.Row="1" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" TextChanged="tb_scalling_TextChanged"/>
+        <TextBox x:Name="tb_oz_scalling" Grid.ColumnSpan="3" Height="23" Margin="0,149.4,9.6,0" Grid.Row="1" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" TextChanged="tb_scalling_TextChanged"/>
+        <TextBlock Margin="0,121.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OY-Scalling" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
+        <TextBlock Margin="0,150.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OZ-Scalling" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
+        <TextBlock Margin="0,189.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OX-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
+        <Slider x:Name="s_ox_rotate" Margin="0,189.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
+        <Slider x:Name="s_oy_rotate" Margin="0,212.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
+        <Slider x:Name="s_oz_rotate" Margin="0,235.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
+        <TextBlock Margin="0,210.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OY-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
+        <TextBlock Margin="0,231.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OZ-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
+        <TextBlock Margin="0,0,47.6,0" Grid.Row="2" TextWrapping="Wrap" Text="Shift vector" HorizontalAlignment="Right" Width="79" Height="16" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <TextBox x:Name="tb_oz_shift" Grid.Column="2" Height="23" Margin="0,0,3.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" Grid.RowSpan="2" PreviewMouseWheel="tb_oz_shift_PreviewMouseWheel"/>
+        <TextBox x:Name="tb_oy_shift" Grid.Column="1" Margin="0,0,9.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" Grid.RowSpan="2" PreviewMouseWheel="tb_oy_shift_PreviewMouseWheel"/>
+        <TextBox x:Name="tb_ox_shift" Margin="0,0,24.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" RenderTransformOrigin="1.753,0.422" HorizontalAlignment="Right" Width="34" Grid.RowSpan="2" PreviewMouseWheel="tb_ox_shift_PreviewMouseWheel"/>
+        <Button Grid.ColumnSpan="2" Content="ZX mirror" Margin="0,19.2,9.6,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Width="59" Click="ZX_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Button Grid.ColumnSpan="2" Content="YZ mirror" Margin="0,19.2,5.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="YZ_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Button Content="XY mirror" Margin="0,19.2,25.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="XY_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Grid Height="102" Margin="0,50.2,10.6,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="194">
+            <RadioButton x:Name="rb_single_wo" Content="Single WO" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" IsChecked="True" Click="rb_Checked"/>
+            <RadioButton x:Name="rb_two_wo_xy" Content="Two WO XY" HorizontalAlignment="Left" Margin="75,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
+            <RadioButton x:Name="rb_two_wo_yz" Content="Two WO YZ" HorizontalAlignment="Left" Margin="75,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
+            <RadioButton x:Name="rb_two_wo_zx" Content="Two WO ZX" HorizontalAlignment="Left" Margin="75,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
+        </Grid>
     </Grid>
 </Window>
