@@ -105,7 +105,7 @@
     <None Include="Resources\cube.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\hui.wo">
+    <None Include="Resources\letter_secr.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\letter_n.wo" />

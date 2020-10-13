@@ -57,8 +57,15 @@ namespace lr1_CG_Cheremnov
                     if (line[0] == '#')
                         continue;
                     string[] edgeDataStr = line.Split();
-                    ridge.Add(((Convert.ToDouble(edgeDataStr[0]), Convert.ToDouble(edgeDataStr[1]), Convert.ToDouble(edgeDataStr[2])),
-                        (Convert.ToDouble(edgeDataStr[3]), Convert.ToDouble(edgeDataStr[4]), Convert.ToDouble(edgeDataStr[5])),
+                    double x1 = double.Parse(edgeDataStr[0], System.Globalization.CultureInfo.InvariantCulture);
+                    double y1 = double.Parse(edgeDataStr[1], System.Globalization.CultureInfo.InvariantCulture);
+                    double z1 = double.Parse(edgeDataStr[2], System.Globalization.CultureInfo.InvariantCulture);
+                    double x2 = double.Parse(edgeDataStr[3], System.Globalization.CultureInfo.InvariantCulture);
+                    double y2 = double.Parse(edgeDataStr[4], System.Globalization.CultureInfo.InvariantCulture);
+                    double z2 = double.Parse(edgeDataStr[5], System.Globalization.CultureInfo.InvariantCulture);
+
+                    ridge.Add(((x1, y1, z1),
+                        (x2, y2, z2),
                         edgeDataStr[6]));
                 }
             }

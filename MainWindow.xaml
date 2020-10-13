@@ -21,11 +21,10 @@
             <ColumnDefinition Width="68*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Margin="0,22,10.6,0" TextWrapping="Wrap" Text="Projection type:" Grid.RowSpan="2" HorizontalAlignment="Right" Width="116" Height="23" VerticalAlignment="Top"/>
-        <ListBox x:Name="lb_projection_type"  Grid.ColumnSpan="3" Height="89" Margin="0,22,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" Grid.RowSpan="2" SelectionChanged="lb_projection_type_SelectionChanged">
-            <ListBoxItem Content="test" HorizontalAlignment="Center"/>
-            <ListBoxItem Content="free_projection" HorizontalAlignment="Center"/>
-            <ListBoxItem Content="2" HorizontalAlignment="Center"/>
-            <ListBoxItem Content="3" HorizontalAlignment="Center"/>
+        <ListBox x:Name="lb_projection_type"  Grid.ColumnSpan="3" Height="67" Margin="0,22,9.6,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" Grid.RowSpan="2" SelectionChanged="lb_projection_type_SelectionChanged">
+            <ListBoxItem Content="ortographic xy" HorizontalAlignment="Center"/>
+            <ListBoxItem Content="free xy" HorizontalAlignment="Center"/>
+            <ListBoxItem Content="isometric" HorizontalAlignment="Center"/>
         </ListBox>
         <DataGrid x:Name="dg_logs" AutoGenerateColumns="False" Margin="10,0,9.6,10.4" Grid.Row="3" Grid.ColumnSpan="3" Height="102" VerticalAlignment="Bottom" Grid.RowSpan="2">
             <DataGrid.Columns>

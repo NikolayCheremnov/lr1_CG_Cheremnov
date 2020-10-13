@@ -54,29 +54,32 @@ namespace lr1_CG_Cheremnov
         // methods for drawing on canvas
         private void DrawingWO(WireObject wo, bool isClone)
         {
+            WireObject projected_wo = null;
             switch (lb_projection_type.SelectedIndex)
             {
                 case 0:
-                    // test mode
-                    foreach(((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr) in wo.Ridge )
-                    {
-                        CanvasArea.Children.Add(SceneProcessor.PreparatingLine(colorStr, p1.x, p1.y, p2.x, p2.y, isClone));
-                    }
-                    logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = wo.Name + " are drawn in test mode" }); // log_action
+                    // test mode - orthographic projection (xy)
+                    projected_wo = SceneProcessor.PreparingOrthographicProjection(wo);
                     break;
                 case 1:
                     // first mode - "free projection"
-                    WireObject projected_wo = SceneProcessor.PreparingFreeProjection(wo);
-                    foreach (((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr) in projected_wo.Ridge)
-                    {
-                        CanvasArea.Children.Add(SceneProcessor.PreparatingLine(colorStr, p1.x, p1.y, p2.x, p2.y, isClone));
-                    }
-                    logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = projected_wo.Name + " are drawn in free projection mode" }); // log_action
+                    projected_wo = SceneProcessor.PreparingFreeProjection(wo);
+                    break;
+                case 2:
+                    // second mode - isometric projection, angle = pi / 3
+                    projected_wo = SceneProcessor.PreparingIsometricProjection(wo);
                     break;
                 default:
                     logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = "drawing skipped" }); // log action
-                    break;
+                    return;
             }
+
+            // draw projection
+            foreach (((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr) in projected_wo.Ridge)
+            {
+                CanvasArea.Children.Add(SceneProcessor.PreparatingLine(colorStr, p1.x, p1.y, p2.x, p2.y, isClone));
+            }
+            logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = projected_wo.Name + " are drawn" }); // log_action
         }
 
         private void mi_load_object_Click(object sender, RoutedEventArgs e)
