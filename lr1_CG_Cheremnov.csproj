@@ -118,6 +118,10 @@
     <None Include="Resources\old_cube.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\prism.wo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\prismatoid.wo" />
     <None Include="Resources\tetrahedron.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

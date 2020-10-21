@@ -16,7 +16,7 @@ namespace lr1_CG_Cheremnov
         }
 
         public bool VisibilityTag { get; set; }
-        public List<Edge> Ridge { get; }
+        public List<Edge> Ridge { get; set; }
         public Vector3 ExternalNormal { get; set; }
         public void AddEdge(Edge AddedEdge)
         {
@@ -61,20 +61,32 @@ namespace lr1_CG_Cheremnov
         // excess edges removing
         public void RemoveFakeEdges()
         {
-            int i = 0;
-            while (i < Ridge.Count) {
-                bool isFake = true;
-                foreach (Edge edge in Ridge)
-                    if ((edge != Ridge[i]) && Ridge[i].CheckContiguity(edge))
+            List<Edge> validEdges = new List<Edge>();
+            Edge baseEdge = Ridge[Ridge.Count - 1];
+            validEdges.Add(baseEdge);
+            Edge currentEdge = Ridge[Ridge.Count - 2];
+            validEdges.Add(currentEdge);
+            Edge prevEdge = baseEdge;
+            bool isEnd = false;
+            while (!isEnd)
+            {
+                for (int i = 0; i < Ridge.Count; i++) // search next edge
+                {
+                    if ((Ridge[i] != currentEdge) && (Ridge[i] != prevEdge) && Ridge[i].CheckContiguity(currentEdge))
                     {
-                        isFake = false;
+                        if (Ridge[i] == baseEdge)
+                            isEnd = true;
+                        else
+                        {
+                            validEdges.Add(Ridge[i]);
+                            prevEdge = currentEdge;
+                            currentEdge = Ridge[i];
+                        }
                         break;
                     }
-                if (isFake)
-                    Ridge.RemoveAt(i);
-                else
-                    i++;
+                }
             }
+            Ridge = validEdges;
         }
 
         // equality test

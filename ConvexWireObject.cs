@@ -20,7 +20,7 @@ namespace lr1_CG_Cheremnov
         public ConvexWireObject(string name, string woSrs)
             : base(name, woSrs)
         {
-            internalPoint = new Point3D(0, 0, 0);
+            internalPoint = new Point3D(1, 1, -1);
 
             // find faces
             Faces = new List<Face>();
@@ -46,8 +46,8 @@ namespace lr1_CG_Cheremnov
                         }
                         if (potentialFace.Ridge.Count != 0) // then we found the face
                         {
-                            potentialFace.AddEdge(currentEdge);
                             potentialFace.AddEdge(adjacentEdge);
+                            potentialFace.AddEdge(currentEdge);
                             potentialFace.RemoveFakeEdges();
                             AddFace(potentialFace);
                         }
@@ -56,7 +56,7 @@ namespace lr1_CG_Cheremnov
             }
         }
 
-        protected virtual void Transformation(Matrix<double> M)
+        protected override void Transformation(Matrix<double> M)
         {
             for (int i = 0; i < Ridge.Count; i++)
             {

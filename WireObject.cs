@@ -202,7 +202,6 @@ namespace lr1_CG_Cheremnov
                 int newOzScalePercent = Convert.ToInt32(persentageOzValue);
                 double newOzScaleMultiplier = Convert.ToDouble(persentageOzValue) / 100;
 
-
                 // set values
                 basicMatrix[0, 0] = newOxScaleMultiplier * 100 / oxScale;
                 oxScale = newOxScalePercent;

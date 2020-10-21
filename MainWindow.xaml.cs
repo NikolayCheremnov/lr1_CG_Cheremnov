@@ -133,6 +133,7 @@ namespace lr1_CG_Cheremnov
             s_ox_rotate.Value = s_oy_rotate.Value = s_oz_rotate.Value = 0;
             tb_ox_scalling.Text = tb_oy_scalling.Text = tb_oz_scalling.Text = "100";
             tb_ox_shift.Text = tb_oy_shift.Text = tb_oz_shift.Text = "0";
+            s_total_scale.Value = 100;
             if (wo_object != null)
                 wo_object = wo_object.Clone();
             SceneRedrawing();
@@ -250,6 +251,11 @@ namespace lr1_CG_Cheremnov
             if (loadObjectFileDialog.FileName == "")
                 return null;
             return loadObjectFileDialog;
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            tb_ox_scalling.Text = tb_oy_scalling.Text = tb_oz_scalling.Text = Convert.ToString((int)s_total_scale.Value);
         }
     }
 }

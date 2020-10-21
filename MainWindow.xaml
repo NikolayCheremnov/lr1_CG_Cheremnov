@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lr1_CG_Cheremnov"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="672" Width="800"
         Loaded="MainWindow_Loaded" MinWidth="800" MinHeight="600">
     <Grid Margin="0,0,-0.4,0.4">
         <Grid.RowDefinitions>
@@ -55,24 +55,30 @@
         <TextBox x:Name="tb_oz_scalling" Grid.ColumnSpan="3" Height="23" Margin="0,149.4,9.6,0" Grid.Row="1" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108" TextChanged="tb_scalling_TextChanged"/>
         <TextBlock Margin="0,121.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OY-Scalling" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
         <TextBlock Margin="0,150.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OZ-Scalling" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
-        <TextBlock Margin="0,189.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OX-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
-        <Slider x:Name="s_ox_rotate" Margin="0,189.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
-        <Slider x:Name="s_oy_rotate" Margin="0,212.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
-        <Slider x:Name="s_oz_rotate" Margin="0,235.4,9.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
-        <TextBlock Margin="0,210.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OY-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
-        <TextBlock Margin="0,231.4,63.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OZ-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
-        <TextBlock Margin="0,0,47.6,0" Grid.Row="2" TextWrapping="Wrap" Text="Shift vector" HorizontalAlignment="Right" Width="79" Height="16" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <TextBox x:Name="tb_oz_shift" Grid.Column="2" Height="23" Margin="0,0,3.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" Grid.RowSpan="2" PreviewMouseWheel="tb_oz_shift_PreviewMouseWheel"/>
-        <TextBox x:Name="tb_oy_shift" Grid.Column="1" Margin="0,0,9.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" Grid.RowSpan="2" PreviewMouseWheel="tb_oy_shift_PreviewMouseWheel"/>
-        <TextBox x:Name="tb_ox_shift" Margin="0,0,24.6,0" Grid.Row="2" TextWrapping="Wrap" Text="0" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" RenderTransformOrigin="1.753,0.422" HorizontalAlignment="Right" Width="34" Grid.RowSpan="2" PreviewMouseWheel="tb_ox_shift_PreviewMouseWheel"/>
-        <Button Grid.ColumnSpan="2" Content="ZX mirror" Margin="0,19.2,9.6,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Width="59" Click="ZX_Button_Click" Height="26" VerticalAlignment="Top"/>
-        <Button Grid.ColumnSpan="2" Content="YZ mirror" Margin="0,19.2,5.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="YZ_Button_Click" Height="26" VerticalAlignment="Top"/>
-        <Button Content="XY mirror" Margin="0,19.2,25.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="XY_Button_Click" Height="26" VerticalAlignment="Top"/>
-        <Grid Height="102" Margin="0,50.2,10.6,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="194">
-            <RadioButton x:Name="rb_single_wo" Content="Single WO" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" IsChecked="True" Click="rb_Checked"/>
-            <RadioButton x:Name="rb_two_wo_xy" Content="Two WO XY" HorizontalAlignment="Left" Margin="75,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
-            <RadioButton x:Name="rb_two_wo_yz" Content="Two WO YZ" HorizontalAlignment="Left" Margin="75,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
-            <RadioButton x:Name="rb_two_wo_zx" Content="Two WO ZX" HorizontalAlignment="Left" Margin="75,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked"/>
+        <TextBlock Margin="0,258.4,64.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OX-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63"/>
+        <Slider x:Name="s_ox_rotate" Margin="0,259.4,10.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged"/>
+        <Slider x:Name="s_oy_rotate" Margin="0,282.4,10.6,0" Grid.Row="1" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged" Grid.RowSpan="2"/>
+        <Slider x:Name="s_oz_rotate" Margin="0,8.2,9.6,0" Grid.Row="2" VerticalAlignment="Top" Minimum="-3.14" Maximum="3.14" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="108" ValueChanged="s_rotate_ValueChanged" Grid.RowSpan="2"/>
+        <TextBlock Margin="0,279.4,64.6,0" Grid.Row="1" TextWrapping="Wrap" Text="OY-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63" Grid.RowSpan="2"/>
+        <TextBlock Margin="0,10.2,64.6,0" Grid.Row="2" TextWrapping="Wrap" Text="OZ-Rotate" VerticalAlignment="Top" HorizontalAlignment="Right" Width="63" Grid.RowSpan="2"/>
+        <TextBlock Margin="0,24.8,48.6,0" Grid.Row="3" TextWrapping="Wrap" Text="Shift vector" HorizontalAlignment="Right" Width="79" Height="16" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_oz_shift" Grid.Column="2" Height="23" Margin="0,24.8,9.6,0" Grid.Row="3" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" PreviewMouseWheel="tb_oz_shift_PreviewMouseWheel"/>
+        <TextBox x:Name="tb_oy_shift" Grid.Column="1" Margin="0,24.8,48.6,0" Grid.Row="3" TextWrapping="Wrap" Text="0" HorizontalAlignment="Right" Width="34" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" PreviewMouseWheel="tb_oy_shift_PreviewMouseWheel" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tb_ox_shift" Margin="0,24.8,19.6,0" Grid.Row="3" TextWrapping="Wrap" Text="0" TextChanged="tb_shift_TextChanged" Height="23" VerticalAlignment="Top" RenderTransformOrigin="1.753,0.422" HorizontalAlignment="Right" Width="34" PreviewMouseWheel="tb_ox_shift_PreviewMouseWheel" Grid.ColumnSpan="2"/>
+        <Button Grid.ColumnSpan="2" Content="ZX mirror" Margin="0,52.8,10.6,0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Width="59" Click="ZX_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Button Grid.ColumnSpan="2" Content="YZ mirror" Margin="0,52.8,6.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="YZ_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Button Content="XY mirror" Margin="0,52.8,26.6,0" Grid.Row="3" HorizontalAlignment="Right" Width="59" Click="XY_Button_Click" Height="26" VerticalAlignment="Top"/>
+        <Grid Height="102" Margin="0,83.8,10.6,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="194">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="28*"/>
+                <ColumnDefinition Width="69*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton x:Name="rb_single_wo" Content="Single WO" HorizontalAlignment="Left" Margin="18.8,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" IsChecked="True" Click="rb_Checked" Grid.Column="1"/>
+            <RadioButton x:Name="rb_two_wo_xy" Content="Two WO XY" HorizontalAlignment="Left" Margin="18.8,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked" Grid.Column="1"/>
+            <RadioButton x:Name="rb_two_wo_yz" Content="Two WO YZ" HorizontalAlignment="Left" Margin="18.8,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked" Grid.Column="1"/>
+            <RadioButton x:Name="rb_two_wo_zx" Content="Two WO ZX" HorizontalAlignment="Left" Margin="18.8,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.034,0.763" Click="rb_Checked" Grid.Column="1"/>
         </Grid>
+        <Slider x:Name="s_total_scale" Margin="0,192.4,10.6,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="152" Maximum="500" Minimum="10" Value="100" ValueChanged="Slider_ValueChanged"/>
+        <TextBlock Margin="0,192.4,64.6,0" Grid.Row="1" TextWrapping="Wrap" Text="Total scale" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.5" HorizontalAlignment="Right" Width="63"/>
     </Grid>
 </Window>
