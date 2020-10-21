@@ -41,7 +41,9 @@
         <Menu Height="22" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,0,9.6,0">
             <MenuItem Header="File">
                 <MenuItem x:Name="mi_load_object" Header="Load object" Click="mi_load_object_Click" ></MenuItem>
+                <MenuItem x:Name="mi_load_convex_object" Header="Load convex object" Click="mi_load_convex_object_Click"/>
                 <MenuItem x:Name="mi_remove_from_scene" Header="Remove from scene" Click="mi_remove_from_scene_Click"/>
+
             </MenuItem>
             <MenuItem Header="Actions">
                 <MenuItem x:Name="mi_reset" Header="Reset" Click="mi_reset_Click" />

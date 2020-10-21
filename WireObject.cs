@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using MathNet.Numerics.LinearAlgebra;
 
@@ -12,11 +14,8 @@ namespace lr1_CG_Cheremnov
 {
     class WireObject
     {
-        private List<((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr)> ridge;  // body frame
-        public List<((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr)> Ridge { get { return ridge; } }
-
-        private string name;
-        public string Name { get { return name; } }
+        public List<Edge> Ridge { get; }
+        public string Name { get; }
         public string Path { get; }
 
         // scales
@@ -40,14 +39,14 @@ namespace lr1_CG_Cheremnov
         public WireObject(string name, string woSrs)
         {
             if (name != null)
-                this.name = name;
+                this.Name = name;
             else
-                this.name = "undefined";
+                this.Name = "undefined";
 
             // read object data
             Path = woSrs;
 
-            ridge = new List<((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr)>();
+            Ridge = new List<Edge>();
 
             using (StreamReader srs = new StreamReader(woSrs))
             {
@@ -64,9 +63,7 @@ namespace lr1_CG_Cheremnov
                     double y2 = double.Parse(edgeDataStr[4], System.Globalization.CultureInfo.InvariantCulture);
                     double z2 = double.Parse(edgeDataStr[5], System.Globalization.CultureInfo.InvariantCulture);
 
-                    ridge.Add(((x1, y1, z1),
-                        (x2, y2, z2),
-                        edgeDataStr[6]));
+                    Ridge.Add(new Edge(new Point3D(x1, y1, z1), new Point3D(x2, y2, z2), edgeDataStr[6]));
                 }
             }
 
@@ -82,12 +79,6 @@ namespace lr1_CG_Cheremnov
                 {0, 0, 0, 1 }
             });
 
-        }
-
-        // methods for working with an object
-        public void ChangeCoords(int edgeIndex, (double x, double y, double z) p1, (double x, double y, double z) p2)
-        {
-            ridge[edgeIndex] = (p1, p2, ridge[edgeIndex].colorStr);
         }
 
         public void XY_Mirror()
@@ -236,15 +227,15 @@ namespace lr1_CG_Cheremnov
             }
         }
 
-        private void Transformation(Matrix<double> M)
+        protected virtual void Transformation(Matrix<double> M)
         {
             for (int i = 0; i < Ridge.Count; i++)
             {
-                Vector<double> p1Coords = Vector<double>.Build.DenseOfArray(new double[] { Ridge[i].p1.x, Ridge[i].p1.y, Ridge[i].p1.z, 1 });
+                Vector<double> p1Coords = Vector<double>.Build.DenseOfArray(new double[] { Ridge[i].P1.X, Ridge[i].P1.Y, Ridge[i].P1.Z, 1 });
                 p1Coords = p1Coords * M;
-                Vector<double> p2Coords = Vector<double>.Build.DenseOfArray(new double[] { Ridge[i].p2.x, Ridge[i].p2.y, Ridge[i].p2.z, 1 });
+                Vector<double> p2Coords = Vector<double>.Build.DenseOfArray(new double[] { Ridge[i].P2.X, Ridge[i].P2.Y, Ridge[i].P2.Z, 1 });
                 p2Coords = p2Coords * M;
-                ChangeCoords(i, (p1Coords[0], p1Coords[1], p1Coords[2]), (p2Coords[0], p2Coords[1], p2Coords[2]));
+                Ridge[i].changeCoords(p1Coords[0], p1Coords[1], p1Coords[2], p2Coords[0], p2Coords[1], p2Coords[2]);
             }
         }
 
@@ -252,6 +243,18 @@ namespace lr1_CG_Cheremnov
         {
             basicMatrix.Clear();
             basicMatrix[0, 0] = basicMatrix[1, 1] = basicMatrix[2, 2] = basicMatrix[3, 3] = 1;
+        }
+
+        // the determination of visibility edges
+        public virtual bool EdgeVisibility(Edge edge, Vector3 projection_vec)
+        {
+            return true;
+        }
+
+        // cloning an object
+        public virtual WireObject Clone()
+        {
+            return new WireObject(Name, Path);
         }
     }
 }

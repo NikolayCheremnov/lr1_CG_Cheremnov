@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConvexWireObject.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="Face.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="SceneProcessor.cs" />
     <Compile Include="WireObject.cs" />
@@ -102,6 +105,9 @@
     <None Include="Resources\axes.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\BlackLine.wo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\cube.wo">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -109,6 +115,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\letter_n.wo" />
+    <None Include="Resources\old_cube.wo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\tetrahedron.wo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

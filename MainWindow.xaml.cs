@@ -1,9 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using MathNet.Numerics.LinearAlgebra;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -55,19 +57,23 @@ namespace lr1_CG_Cheremnov
         private void DrawingWO(WireObject wo, bool isClone)
         {
             WireObject projected_wo = null;
+            Vector3 projection_vec;
             switch (lb_projection_type.SelectedIndex)
             {
                 case 0:
                     // test mode - orthographic projection (xy)
                     projected_wo = SceneProcessor.PreparingOrthographicProjection(wo);
+                    projection_vec = SceneProcessor.orthographic_projection_vec;
                     break;
                 case 1:
                     // first mode - "free projection"
                     projected_wo = SceneProcessor.PreparingFreeProjection(wo);
+                    projection_vec = SceneProcessor.free_projection_vec;
                     break;
                 case 2:
                     // second mode - isometric projection, angle = pi / 3
                     projected_wo = SceneProcessor.PreparingIsometricProjection(wo);
+                    projection_vec = SceneProcessor.isometric_projection_vec;
                     break;
                 default:
                     logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = "drawing skipped" }); // log action
@@ -75,21 +81,27 @@ namespace lr1_CG_Cheremnov
             }
 
             // draw projection
-            foreach (((double x, double y, double z) p1, (double x, double y, double z) p2, string colorStr) in projected_wo.Ridge)
+            for (int i = 0; i < wo.Ridge.Count; i++)
             {
-                CanvasArea.Children.Add(SceneProcessor.PreparatingLine(colorStr, p1.x, p1.y, p2.x, p2.y, isClone));
+                if (wo.EdgeVisibility(wo.Ridge[i], projection_vec))
+                {
+                    CanvasArea.Children.Add(SceneProcessor.PreparatingLine(projected_wo.Ridge[i].Color, 
+                        projected_wo.Ridge[i].P1.X, projected_wo.Ridge[i].P1.Y, projected_wo.Ridge[i].P2.X, projected_wo.Ridge[i].P2.Y, isClone));
+                }
             }
             logs.Add(new Log() { Time = DateTime.Now.ToString(), Action = "Drawing WO", Logs = projected_wo.Name + " are drawn" }); // log_action
         }
 
         private void mi_load_object_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog loadObjectFileDialog = new OpenFileDialog();
-            loadObjectFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
-            loadObjectFileDialog.Filter = "Wired Object files|*.wo";
-            loadObjectFileDialog.ShowDialog();
-            wo_object = new WireObject(loadObjectFileDialog.SafeFileName, loadObjectFileDialog.FileName);
-            SceneRedrawing();
+            FileDialog  loadObjectFileDialog = FileDialogHandler();
+            if (loadObjectFileDialog == null)
+                MessageBox.Show("nothing is selected");
+            else
+            {
+                wo_object = new WireObject(loadObjectFileDialog.SafeFileName, loadObjectFileDialog.FileName);
+                SceneRedrawing();
+            }
         }
 
         private void mi_remove_from_scene_Click(object sender, RoutedEventArgs e)
@@ -121,7 +133,8 @@ namespace lr1_CG_Cheremnov
             s_ox_rotate.Value = s_oy_rotate.Value = s_oz_rotate.Value = 0;
             tb_ox_scalling.Text = tb_oy_scalling.Text = tb_oz_scalling.Text = "100";
             tb_ox_shift.Text = tb_oy_shift.Text = tb_oz_shift.Text = "0";
-            wo_object = new WireObject(wo_object.Name, wo_object.Path);
+            if (wo_object != null)
+                wo_object = wo_object.Clone();
             SceneRedrawing();
         }
 
@@ -214,6 +227,29 @@ namespace lr1_CG_Cheremnov
         private void rb_Checked(object sender, RoutedEventArgs e)
         {
             SceneRedrawing();
+        }
+
+        private void mi_load_convex_object_Click(object sender, RoutedEventArgs e)
+        {
+            FileDialog loadObjectFileDialog = FileDialogHandler();
+            if (loadObjectFileDialog == null)
+                MessageBox.Show("nothing is selected");
+            else
+            {
+                wo_object = new ConvexWireObject(loadObjectFileDialog.SafeFileName, loadObjectFileDialog.FileName);
+                SceneRedrawing();
+            }
+        }
+
+        private OpenFileDialog FileDialogHandler()
+        {
+            OpenFileDialog loadObjectFileDialog = new OpenFileDialog();
+            loadObjectFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            loadObjectFileDialog.Filter = "Wired Object files|*.wo";
+            loadObjectFileDialog.ShowDialog();
+            if (loadObjectFileDialog.FileName == "")
+                return null;
+            return loadObjectFileDialog;
         }
     }
 }
